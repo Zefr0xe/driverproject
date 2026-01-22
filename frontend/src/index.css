@@ -1,0 +1,270 @@
+:root {
+  --bg-gradient: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --accent-color: #00d2ff;
+  --accent-hover: #3a7bd5;
+  --card-radius: 16px;
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Status Colors */
+  --status-requested: #f9c74f;
+  --status-accepted: #90be6d;
+  --status-funded: #277da1;
+  --status-completed: #f3722c;
+  --status-confirmed: #43aa8b;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-family);
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2rem;
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 1rem;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.container {
+  width: 100%;
+}
+
+/* Glassmorphism Card */
+.card,
+.sub-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--card-radius);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.sub-card {
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+/* Wallet Profile */
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem 1.5rem;
+  border-radius: 99px;
+  /* Pill shape */
+  border: var(--glass-border);
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.profile p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.profile strong {
+  color: var(--accent-color);
+  font-family: monospace;
+}
+
+/* Grid Layout */
+.main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Forms & Inputs */
+input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 1rem;
+  box-sizing: border-box;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: var(--accent-color);
+  outline: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Buttons */
+button {
+  background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+  font-family: inherit;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:disabled {
+  background: #555;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Ride List */
+.ride-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 600px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+/* Scrollbar Style */
+.ride-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ride-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.ride-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: background 0.2s;
+}
+
+.ride-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.ride-item p {
+  margin: 0.5rem 0;
+  line-height: 1.4;
+}
+
+/* Status Badges */
+[class^="status-"] {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.status-requested {
+  color: var(--status-requested);
+  border: 1px solid var(--status-requested);
+}
+
+.status-accepted {
+  color: var(--status-accepted);
+  border: 1px solid var(--status-accepted);
+}
+
+.status-funded {
+  color: var(--status-funded);
+  border: 1px solid var(--status-funded);
+}
+
+.status-completed {
+  color: var(--status-completed);
+  border: 1px solid var(--status-completed);
+}
+
+.status-confirmed {
+  color: var(--status-confirmed);
+  border: 1px solid var(--status-confirmed);
+}
+
+.actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hash {
+  margin-top: 1rem;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  word-break: break-all;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.success {
+  color: var(--status-confirmed);
+  font-weight: 600;
+  margin-top: 1rem;
+}
